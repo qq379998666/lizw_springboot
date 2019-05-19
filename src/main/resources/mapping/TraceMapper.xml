@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lizw.springboot.mapper.TraceEntity" >
+    <select id="selectOneIpTraceMapper" parameterType="lizw.springboot.entity.TraceEntity" resultType="java.util.Map">
+      <!--   SELECT f.hop,f.A_ip,f.A_country,f.A_province,f.A_city,f.A_operator,f.A_p,f.B_ip,f.B_country,f.B_province,f.B_city,f.B_operator,f.B_p,h.lastip,g.firstip
+        FROM (SELECT * FROM trace WHERE	A_ip = #{} OR B_ip = #{}) f,
+             (SELECT A_ip firstip,hop_sign FROM trace WHERE hop_sign in(SELECT hop_sign FROM trace WHERE	A_ip = #{} OR B_ip = #{}) AND hop = 1) g,
+             (SELECT e.B_ip lastip,e.hop_sign 
+              FROM (SELECT MAX(hop) mhop,hop_sign FROM trace WHERE hop_sign in(SELECT hop_sign FROM trace WHERE	A_ip = #{} OR B_ip = #{})GROUP BY hop_sign) d,
+                   (SELECT * FROM trace WHERE hop_sign in(SELECT hop_sign FROM trace WHERE	A_ip = #{} OR B_ip = #{})) e 
+              WHERE d.hop_sign = e.hop_sign AND d.mhop = e.hop) h
+        WHERE f.hop_sign = g.hop_sign AND g.hop_sign = h.hop_sign  -->
+    </select>
+</mapper>

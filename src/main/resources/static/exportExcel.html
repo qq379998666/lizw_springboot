@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>导出</title>
+</head>
+<body>
+ <center>
+   <button id="js-export" type="button" class="btn btn-primary">导出Excel</button>
+ </center>
+ <script type="application/javascript" src="js/jquery-3.1.1.min.js"></script>
+ <script type="text/javascript">
+   $('#js-export').click(function(){
+     
+     $.ajax(
+             {
+                 type: "POST",
+                 url: "http://localhost:8080/TracerouteController/treacerouteSelectTwoIPExportExcelController",
+                 dataType: "json",
+                 data: formFile,
+                 async: false,
+                 cache: false,
+                 processData: false,
+                 contentType: false,
+                 success: function (json) {
+                     if (json == '1'){
+                         alert("上传成功");
+                         window.location.reload();
+                     } else {
+                         alert("上传失败");
+                     }
+                 },error: function () {
+                     alert("上传失败-Error");
+                 }
+             }
+   });
+ </script>
+</body>
+</html>

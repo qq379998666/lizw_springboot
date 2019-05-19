@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+</head>
+<body>
+<div style="margin-left: 30%">
+    <form id="uploadForm">
+        <input type="file" id="inputFile" name="file">
+    </form>
+    <input id="uploadBtn" type="button" value="上传 " >
+</div>
+<script type="application/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    //获取上传文件,传递上传信息
+    $('#uploadBtn').one('click', oneClick);
+    function oneClick() {
+        var fileObj = document.getElementById("inputFile").files[0]; // js 获取文件对象
+
+        if (typeof (fileObj) == "undefined" || fileObj.size <= 0) {
+            alert("请选择需要导入的文件");
+        }
+
+        var formFile = new FormData();
+        formFile.append("file", fileObj); //加入文件对象
+        $.ajax(
+            {
+                type: "POST",
+                // url: "http://localhost:8011/centerData/importDNSWeb",
+                //3-4-浙江国际网站访问性能数据
+                //url: "http://localhost:8011/centerData/importBusinessPerforWorld",
+                //3-5-各地市访问浙江重点网站
+                //url: "http://localhost:8011/centerData/importBusinessPerforProvince",
+                //2-6界面数据
+                //url: "http://localhost:8011/centerData/importNational",
+                //2-4界面数据(t_nation_perfor和t_pref_ping)
+                // url: "http://localhost:8011/centerData/importNationReport",
+                //1-1,1-2宽带测速-用户分布
+                //url: "http://localhost:8011/centerData/importUserDistReport",
+                //2-1_3-2宽带测速-宽带测速
+                //url: "http://localhost:8011/centerData/importBroadbandSpeed",
+                //2-2 3-1宽带测速-宽带测速概览
+                // url: "http://localhost:8011/centerData/importBroadbandRateOverview",
+                //3-3宽带测速-移动信源APP
+                // url: "http://localhost:8011/centerData/importInforResource",
+                //2-3宽带测速-跨网跨省
+                url: "http://localhost:8080/TraceAnalysisController/TraceAnalysis",
+                //3-1
+                //url: "http://localhost:8011/centerData/importWebPresent",
+                //3-2
+                //url: "http://localhost:8011/centerData/importVideoPresent",
+                //3-6
+                //url: "http://localhost:8011/centerData/importgd",
+                //5-1,5-2
+                //url: "http://localhost:8011/centerData/importDNSWeb",
+                dataType: "json",
+                data: formFile,
+                async: false,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (json) {
+                    if (json == '1'){
+                        alert("上传成功");
+                        window.location.reload();
+                    } else {
+                        alert("上传失败");
+                    }
+                },error: function () {
+                    alert("上传失败-Error");
+                }
+            }
+        )
+    };
+</script>
+
+</body>
+</html>

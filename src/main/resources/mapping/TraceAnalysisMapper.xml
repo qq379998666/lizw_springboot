@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lizw.springboot.mapper.TraceAnalysisMapper" >
+      
+    <insert id="traceAnalysisMapper" parameterType="lizw.springboot.entity.TraceAnalysisEntity" > 
+        INSERT INTO trace(
+           hop,
+           A_ip,
+           A_country,
+           A_province,
+           A_city,
+           A_operator,
+           A_p,
+           B_ip,
+           B_country,
+           B_province,
+           B_city,
+           B_operator,
+           B_p)
+        VALUES(
+           #{hop},
+           #{A_ip},
+           #{A_country},
+           #{A_province,jdbcType=VARCHAR},
+           #{A_city,jdbcType=VARCHAR},
+           #{A_operator,jdbcType=VARCHAR},
+           #{A_p},
+           #{B_ip},
+           #{B_country},
+           #{B_province,jdbcType=VARCHAR},
+           #{B_city,jdbcType=VARCHAR},
+           #{B_operator,jdbcType=VARCHAR},
+           #{B_p});
+    </insert>
+    
+ </mapper> 
